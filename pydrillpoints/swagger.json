@@ -1,0 +1,68 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Xray drill point detection",
+    "version" : "1.0.0",
+    "title" : "Xray drill point detection"
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/l258/test/1.0.0",
+  "schemes" : [ "https", "http" ],
+  "paths" : {
+    "/detectors" : {
+      "get" : {
+        "summary" : "List available detectors",
+        "description" : "List out the names of various detectors that can be used\n",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "list showing available detectors"
+          }
+        }
+      }
+    },
+    "/images" : {
+      "get" : {
+        "summary" : "List available images",
+        "description" : "List out the filenames of available xray images\n",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "list showing available image filenames"
+          }
+        }
+      }
+    },
+    "/image/[detector]/[filename]" : {
+      "get" : {
+        "summary" : "Get xray image with xray drill points marked",
+        "description" : "Returns an image in PNG format with te xray drill points marked\n",
+        "produces" : [ "image/png" ],
+        "parameters" : [ {
+          "name" : "detector",
+          "in" : "path",
+          "description" : "Name of detector",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "image",
+          "in" : "path",
+          "description" : "Filename of image",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "PNG image with drill points marked"
+          },
+          "400" : {
+            "description" : "Invalid parameters specified"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : { }
+}
