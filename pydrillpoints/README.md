@@ -3,6 +3,7 @@
 Display an xray image with the drill points marked on it.
 
 ## Installation
+
 Clone the github repository, and install the required pip packages by running the following:
 
 `pip install -r requirements.txt`
@@ -104,4 +105,29 @@ Returns an image in PNG format with te xray drill points marked
 | 200 | PNG image with drill points marked |
 | 400 | Invalid parameters specified |
 
+### /coords/[detector]/[filename]
+
+#### GET
+##### Summary:
+
+Get co-ordinates of head and femur of xray
+
+##### Description:
+
+Returns JSON data containing the x and y co-ordinates for the head and femur
+
+
+##### Parameters
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| detector | path | Name of detector | Yes | string |
+| image | path | Filename of image | Yes | string |
+
+##### Responses
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | JSON data |
+| 400 | Invalid parameters specified |
 
