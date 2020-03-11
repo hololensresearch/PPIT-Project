@@ -35,6 +35,34 @@
         }
       }
     },
+    "/coords/[detector]/[filename]" : {
+      "get" : {
+        "summary" : "Get co-ordinates of head and femur of xray",
+        "description" : "Returns JSON object containing coordinates for the head and femur\n",
+        "produces" : [ "image/png" ],
+        "parameters" : [ {
+          "name" : "detector",
+          "in" : "path",
+          "description" : "Name of detector",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "image",
+          "in" : "path",
+          "description" : "Filename of image",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "JSON data"
+          },
+          "400" : {
+            "description" : "Invalid parameters specified"
+          }
+        }
+      }
+    }
     "/image/[detector]/[filename]" : {
       "get" : {
         "summary" : "Get xray image with xray drill points marked",
