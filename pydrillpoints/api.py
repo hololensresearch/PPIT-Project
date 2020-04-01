@@ -24,7 +24,6 @@ def list_images():
 
 @app.route('/image/<detector>/<filename>', methods=['GET'])
 def get_image(detector, filename):
-
     if not filename:
         return "Error: No filename provided. Please specify a filename.", 400
 
@@ -46,6 +45,30 @@ def get_image(detector, filename):
     response = make_response(buffer.tobytes())
     response.headers['Content-Type'] = 'image/png'
     return response
+
+
+
+@app.route('/coords/<detector>/<filename>', methods=['GET'])
+def get_coords(detector, filename):
+
+    if not filename:
+        return "Error: No filename provided. Please specify a filename.", 400
+
+    # prevent path traversal attacks
+    file_location = os.path.join("images/", os.path.basename(filename))
+
+    if not os.path.exists(file_location):
+        return "Error: File does not exist.", 400
+
+    # select detector class
+    if detector not in detectors:
+        return "Error: Invalid detector specified", 400
+
+    Detector = detectors.get(detector)
+    d = Detector(file_location)
+
+    # get output image and return in response
+    return {'head': d.head_coords, 'femur': d.femur_coords}
 
 
 if __name__=="__main__":
