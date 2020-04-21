@@ -22,6 +22,10 @@ To detect an example image, run the following command:
 
 `python cli.py --filename 1.jpg`
 
+Additionally, there is a work-in-progress demo showing a detector which is able to draw a guideline when the user manually selects a point near the center of the hip head. It can be run using:
+
+`python demo.py`
+
 ## API
 
 The HTTP API can be started by running:
